@@ -36,7 +36,7 @@ systemctl start prometheus
 systemctl enable node_exporter
 systemctl enable prometheus
 
-
+# запрашивать у node_exporter данные каждые 5s
 echo "
   - job_name: 'node_exporter'
     scrape_interval: 5s
