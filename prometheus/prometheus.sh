@@ -36,3 +36,12 @@ systemctl start prometheus
 systemctl enable node_exporter
 systemctl enable prometheus
 
+
+echo "
+  - job_name: 'node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100']
+
+" >> /etc/prometheus/prometheus.yml
+
