@@ -45,3 +45,5 @@ echo "
 
 " >> /etc/prometheus/prometheus.yml
 
+systemctl reload prometheus
+
