@@ -10,5 +10,5 @@
 - $ git clone https://github.com/maksmaxis/vagrant_otus_cfg.git
 - $ cd /vagrant_otus_cfg/vagrant
 - $ vagrant up
-- After completion!
+- After completion! (default: Complete!)
 - $ vagrant ssh
