@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#$script = <<-SHELL
+#echo "None do"
+#SHELL
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "mytest"
+    vb.memory = "2048"
+    vb.cpus = 1
+  end
+
+# host name of virtual machine
+  config.vm.hostname = "mysql-master"
+
+# forward port of machine
+#  config.vm.network "bridged"
+
+# my ip addr of vm machine
+  config.vm.network "private_network", ip: "0.0.0.0"
+  config.vm.network "public_network", bridge: "wlp2s0"
+  config.vm.network "forwarded_port", guest: 22, host: 8070
+  config.vm.provision "shell", path: "provision.sh"
+  config.vm.provision "shell", path: "nginx_proxy_apache.sh"
+  config.vm.provision "shell", path: "mysqld.sh"
+
+end
