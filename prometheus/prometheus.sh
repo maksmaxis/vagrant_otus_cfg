@@ -47,3 +47,9 @@ echo "
 
 systemctl reload prometheus
 
+# установка grafana
+sudo yum install -y /home/vagrant/prometheus/grafana-enterprise-9.1.0-1.x86_64.rpm
+
+systemctl --enable grafana-server.service
+
+
