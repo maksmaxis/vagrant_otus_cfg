@@ -8,4 +8,5 @@ Then just run vagrant up in terminal and the rest will be done automatically. Op
 - $ mkdir project
 - $ cd project
 - $ git clone https://github.com/maksmaxis/vagrant_otus_cfg.git
+- $ cd /vagrant_otus_cfg/vagrant
 - $ vagrant up
