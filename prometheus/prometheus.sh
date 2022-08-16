@@ -29,3 +29,10 @@ cd /home/vagrant/prometheus/node_exporter-1.3.1.linux-amd64/; cp node_exporter /
 chown -R prometheus: /etc/prometheus/ /var/lib/prometheus /usr/local/bin/prom*
 chown node_exporter: /usr/local/bin/node_exporter
 
+systemctl daemon-reload
+
+systemctl start node_exporter
+systemctl start prometheus
+systemctl enable node_exporter
+systemctl enable prometheus
+
