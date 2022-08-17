@@ -1,7 +1,5 @@
 # backup конфигурации nginx
 cd /etc/nginx/; mv nginx.conf nginx.conf.bak;
-# backup конфигурации apache
-cd /etc/httpd/conf.d/; mv nginx.conf nginx.conf.bak;
 
 # копируем конфигурацию из репозитория
 cp /home/vagrant/repo/vagrant_otus_cfg/nginx/nginx.conf /etc/nginx/
@@ -11,6 +9,8 @@ cp /home/vagrant/repo/vagrant_otus_cfg/nginx/balancing.conf /etc/nginx/conf.d/
 
 # Конфигурация локальных хостов
 cp /home/vagrant/repo/vagrant_otus_cfg/apache/servers.conf /etc/httpd/conf.d/
+
+systemctl restart nginx
 
 # Создаем индексы для кажого порта 8080, 8081 и 8082 
 
@@ -28,6 +28,6 @@ cat > /var/www/html2/index.html <<EOF
 <h1> Welcome 8082 </h1>
 EOF
 
-# перезапустить конфигурацию nginx и apache
-systemctl reload nginx
-systemctl reload httpd
+# перезапустить apache для применения внесенных изменений
+systemctl restart httpd; systemctl reload httpd
+
