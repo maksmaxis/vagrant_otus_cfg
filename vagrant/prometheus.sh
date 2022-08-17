@@ -33,14 +33,16 @@ cd /home/vagrant/prometheus/node_exporter-1.3.1.linux-amd64/; cp node_exporter /
 chown -R prometheus: /etc/prometheus/ /var/lib/prometheus /usr/local/bin/prom*
 chown node_exporter: /usr/local/bin/node_exporter
 
-cp /home/vagrant/repo/vagrant_otus_cfg/prometheus/prometheus.service /etc/systemd/system/
-cp /home/vagrant/repo/vagrant_otus_cfg/prometheus/node_exporter.service /etc/systemd/system/
+cp /home/vagrant/vagrant_otus_cfg/prometheus/prometheus.service /etc/systemd/system/
+cp /home/vagrant/vagrant_otus_cfg/prometheus/node_exporter.service /etc/systemd/system/
 
 # перезапустить демона
 systemctl daemon-reload
 
-systemctl start node_exporter; systemctl start prometheus
-systemctl enable node_exporter;systemctl enable prometheus
+systemctl start node_exporter
+systemctl start prometheus
+systemctl enable node_exporter
+systemctl enable prometheus
 
 # запрашивать у node_exporter данные каждые 5s
 echo "
@@ -51,8 +53,8 @@ echo "
 
 " >> /etc/prometheus/prometheus.yml
 
-# перезапустить prometheus для применения настроек конфигурации
-systemctl restart prometheus;
+# перезапустить конфигурацию prometheus
+systemctl reload prometheus
 
 # установка grafana
 sudo yum install -y /home/vagrant/prometheus/grafana-enterprise-9.1.0-1.x86_64.rpm
