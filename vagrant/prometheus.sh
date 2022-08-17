@@ -12,7 +12,7 @@ cd /home/vagrant/prometheus/; curl -LO https://dl.grafana.com/enterprise/release
 cd /home/vagrant/prometheus/; tar -xf prometheus-2.37.0.linux-amd64.tar.gz; tar -xf node_exporter-1.3.1.linux-amd64.tar.gz
 
 # удаляем архивы
-rm -f /home/vagrant/prometheus/*.tar.gz
+#rm -f /home/vagrant/prometheus/*.tar.gz
 
 # создаем пользователся для prometheus
 useradd --no-create-home --shell /usr/sbin/nologin prometheus
