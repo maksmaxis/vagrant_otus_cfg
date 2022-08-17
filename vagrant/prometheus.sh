@@ -9,7 +9,7 @@ cd /home/vagrant/prometheus/; curl -LO https://github.com/prometheus/node_export
 cd /home/vagrant/prometheus/; curl -LO https://dl.grafana.com/enterprise/release/grafana-enterprise-9.1.0-1.x86_64.rpm
 
 # делаем распаковку архивов
-tar -xf /home/vagrant/prometheus/*.tar.gz
+cd /home/vagrant/prometheus/; tar -xf prometheus-2.37.0.linux-amd64.tar.gz; tar -xf node_exporter-1.3.1.linux-amd64.tar.gz
 
 # удаляем архивы
 rm -f /home/vagrant/prometheus/*.tar.gz
@@ -26,23 +26,21 @@ mkdir {/etc/,/var/lib/}prometheus
 # копируем конфигурацию сервисов в директории
 
 cd /home/vagrant/prometheus/prometheus-2.37.0.linux-amd64/; cp -r consoles console_libraries prometheus.yml /etc/prometheus/
-cd /home/vagrant/prometheus/prometheus-2.37.0.linux-amd64/; cp prom{etheus, tool} /usr/local/bin/
+cd /home/vagrant/prometheus/prometheus-2.37.0.linux-amd64/; cp prom{etheus,tool} /usr/local/bin/
 cd /home/vagrant/prometheus/node_exporter-1.3.1.linux-amd64/; cp node_exporter /usr/local/bin/
 
 # выдаем права для пользователям
 chown -R prometheus: /etc/prometheus/ /var/lib/prometheus /usr/local/bin/prom*
 chown node_exporter: /usr/local/bin/node_exporter
 
-cp /home/vagrant/vagrant_otus_cfg/prometheus/prometheus.service /etc/systemd/system/
-cp /home/vagrant/vagrant_otus_cfg/prometheus/node_exporter.service /etc/systemd/system/
+cp /home/vagrant/repo/vagrant_otus_cfg/prometheus/prometheus.service /etc/systemd/system/
+cp /home/vagrant/repo/vagrant_otus_cfg/prometheus/node_exporter.service /etc/systemd/system/
 
 # перезапустить демона
 systemctl daemon-reload
 
-systemctl start node_exporter
-systemctl start prometheus
-systemctl enable node_exporter
-systemctl enable prometheus
+systemctl start node_exporter; systemctl start prometheus
+systemctl enable node_exporter;systemctl enable prometheus
 
 # запрашивать у node_exporter данные каждые 5s
 echo "
@@ -53,8 +51,8 @@ echo "
 
 " >> /etc/prometheus/prometheus.yml
 
-# перезапустить конфигурацию prometheus
-systemctl reload prometheus
+# перезапустить prometheus для применения настроек конфигурации
+systemctl restart prometheus;
 
 # установка grafana
 sudo yum install -y /home/vagrant/prometheus/grafana-enterprise-9.1.0-1.x86_64.rpm
