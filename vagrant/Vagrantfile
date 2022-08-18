@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#$script = <<-SHELL
+#echo "None do"
+#SHELL
+
+Vagrant.configure("2") do |config|
+
+# All servers will run CentOS v.7
+    config.vm.box = "centos/7"
+    config.vm.box_check_update = true
+
+# Create the MySQL-Source server
+  config.vm.define "master" do |master|
+	master.vm.hostname = "mysql-master" 
+    master.vm.network "private_network", ip: "192.168.56.1"
+    master.vm.network "public_network", bridge: "wlp2s0"
+    master.vm.network "forwarded_port", guest: 22, host: 8020
+    master.vm.provider "virtualbox" do |v|
+    v.name = "mysql-master"
+    v.memory = "2048"
+    v.cpus = 1
+  end
+	master.vm.provision "shell", path: "provision.sh"
+	master.vm.provision "shell", path: "nginx_proxy_apache.sh"
+    master.vm.provision "shell", path: "prometheus.sh"
+  end
+# Create the MySQL-Slave server  
+  config.vm.define "slave" do |slave|
+    slave.vm.hostname = "mysql-slave"
+	slave.vm.network "private_network", ip: "192.168.56.2"
+    slave.vm.network "public_network", bridge: "wlp2s0"
+	slave.vm.network "forwarded_port", guest: 22, host: 8021
+    slave.vm.provider "virtualbox" do |v|
+    v.name = "mysql-slave"
+    v.memory = "1024"
+    v.cpus = 1
+  end
+    slave.vm.provision "shell", path: "slave-mysql.sh"
+  end
+
+
+end
