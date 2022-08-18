@@ -3,7 +3,6 @@
 #$script = <<-SHELL
 #echo "None do"
 #SHELL
-
 Vagrant.configure("2") do |config|
 
 # All servers will run CentOS v.7
