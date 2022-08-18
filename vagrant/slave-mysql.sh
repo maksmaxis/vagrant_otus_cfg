@@ -6,6 +6,7 @@ systemctl stop firewalld
 systemctl disable firewalld
 
 yum install -y epel-release
+yum install -y telnet-server telnet
 
 yum install -y php php-fpm
 systemctl start php-fpm
