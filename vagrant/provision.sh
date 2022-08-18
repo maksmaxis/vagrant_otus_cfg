@@ -8,6 +8,8 @@ systemctl stop firewalld
 systemctl disable firewalld
 
 yum install -y epel-release
+yum install -y telnet-server telnet
+
 # установка nginx
 yum install -y nginx; systemctl start nginx; systemctl enable nginx
 
