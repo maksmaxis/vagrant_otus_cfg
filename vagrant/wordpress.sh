@@ -9,12 +9,11 @@ yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum install -y yum-utils
 yum-config-manager --enable remi-php74
 yum install -y php php-cli
-sudo yum install php  php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json
+sudo yum install -y php  php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json
 # restart apache
 systemctl restart httpd.service
 
 # распаковка zip файла Wordpress
-yum install -y unzip
 cd /home/vagrant/temp_wp; unzip -q latest.zip -d /var/www/html/
 
 # предоставление директории соответствующие права доступа
@@ -33,5 +32,8 @@ cd /var/www/html/wordpress/; cp wp-config-sample.php wp-config.php
 
 # поменять данные как в mysql
 sed -i 's/database_name_here/wp_vagrant/' /var/www/html/wordpress/wp-config.php
-sed -i 's/username_here/vagrant/' /var/www/html/wordpress/wp-config.php
+sed -i 's/username_here/wpuser/' /var/www/html/wordpress/wp-config.php
 sed -i 's/password_here/Ghjcnjnfr_01./' /var/www/html/wordpress/wp-config.php
+
+systemctl restart httpd.service
+systemctl restart mysqld
