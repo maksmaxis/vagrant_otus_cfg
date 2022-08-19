@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", path: "nginx_proxy_apache.sh"
     master.vm.provision "shell", path: "prometheus.sh"
     master.vm.provision "shell", path: "master-mysql.sh"
+    master.vm.provision "shell", path: "wordpress.sh"
   end
 # Create the MySQL-Slave server  
   config.vm.define "slave" do |slave|
