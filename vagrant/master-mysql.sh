@@ -16,7 +16,7 @@ systemctl enable mysqld
 
 sed -i '6ibind-address           = 0.0.0.0\nserver-id              = 1\nbinlog_do_db                = master-bin' /etc/my.cnf
 
-echo "
+#echo "
 #[client]
 #user = root
 #password = $(cat /var/log/mysqld.log | grep 'A temporary password' | awk '{print $NF}')
