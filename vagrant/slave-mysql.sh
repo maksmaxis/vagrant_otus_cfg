@@ -39,16 +39,16 @@ systemctl enable mysqld
 
 sed -i '6ibind-address           = 0.0.0.0\nserver-id              = 2\nbinlog_do_db                = master-bin' /etc/my.cnf
 
-echo "
-[client]
-user = root
-password = $(cat /var/log/mysqld.log | grep 'A temporary password' | awk '{print $NF}')
-host = 127.0.0.1
-[mypath]
-user = root
-password = $(cat /var/log/mysqld.log | grep 'A temporary password' | awk '{print $NF}')
-host = localhost
-" >> /etc/my.cnf
+#echo "
+#[client]
+#user = root
+#password = $(cat /var/log/mysqld.log | grep 'A temporary password' | awk '{print $NF}')
+#host = 127.0.0.1
+#[mypath]
+#user = root
+#password = $(cat /var/log/mysqld.log | grep 'A temporary password' | awk '{print $NF}')
+#host = localhost
+#" >> /etc/my.cnf
 
 # Перезагрузка mysql
 systemctl restart mysqld
