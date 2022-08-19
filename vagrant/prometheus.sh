@@ -2,11 +2,11 @@
 mkdir /home/vagrant/prometheus/
 
 # скачиваем prometheus
-cd /home/vagrant/prometheus/; curl -LO https://github.com/prometheus/prometheus/releases/download/v2.37.0/prometheus-2.37.0.linux-amd64.tar.gz
+cd /home/vagrant/prometheus/; wget http://192.168.56.1:80/node_exporter-1.3.1.linux-amd64.tar.gz
 # скачиваем node_exporter
-cd /home/vagrant/prometheus/; curl -LO https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+cd /home/vagrant/prometheus/; wget http://192.168.56.1:80/prometheus-2.37.0.linux-amd64.tar.gz
 # скачиваем grafana
-cd /home/vagrant/prometheus/; curl -LO https://dl.grafana.com/enterprise/release/grafana-enterprise-9.1.0-1.x86_64.rpm
+cd /home/vagrant/prometheus/; wget http://192.168.56.1:80/grafana-enterprise-9.1.0-1.x86_64.rpm
 
 # делаем распаковку архивов
 cd /home/vagrant/prometheus/; tar -xf prometheus-2.37.0.linux-amd64.tar.gz; tar -xf node_exporter-1.3.1.linux-amd64.tar.gz
