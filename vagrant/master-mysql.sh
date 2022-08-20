@@ -31,6 +31,7 @@ sed -i '6ibind-address           = 0.0.0.0\nserver-id              = 1\nbinlog_d
 cp /home/vagrant/repo/vagrant_otus_cfg/mysql/mysql_backup_script.sh /home/vagrant/repo/
 touch /home/vagrant/repo/debug_backup.log
 mkdir /home/vagrant/repo/mysqldump/
+cd /home/vagrant/repo/; chmod +x mysql_backup_script.sh
 
 #  добавить крон
 cat > /etc/crontab <<EOF
