@@ -27,6 +27,11 @@ sed -i '6ibind-address           = 0.0.0.0\nserver-id              = 1\nbinlog_d
 #host = localhost
 #" >> /etc/my.cnf
 
+# backup script
+cp /home/vagrant/repo/vagrant_otus_cfg/mysql/mysql_backup_script.sh /home/vagrant/repo/
+touch /home/vagrant/repo/debug_backup.log
+mkdir /home/vagrant/repo/mysqldump/
+
 # Перезагрузка mysql
 systemctl restart mysqld
 
