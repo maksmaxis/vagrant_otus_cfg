@@ -32,6 +32,13 @@ cp /home/vagrant/repo/vagrant_otus_cfg/mysql/mysql_backup_script.sh /home/vagran
 touch /home/vagrant/repo/debug_backup.log
 mkdir /home/vagrant/repo/mysqldump/
 
+#  добавить крон
+cat > /etc/crontab <<EOF
+# MySQL backup script
+
+*/10 0-23 * * * /home/vagrant/repo/mysql_backup_script.sh >> /home/vagrant/repo/debug_backup.log 2>&1
+EOF
+
 # Перезагрузка mysql
 systemctl restart mysqld
 
