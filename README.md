@@ -12,3 +12,5 @@
 - $ vagrant up
 - After completion! (default: Complete!)
 - $ vagrant ssh
+
+- This Vagrantfile will install 2 virtual machines on which the following services will be installed: prometheus, node_exporter, grafana, nginx, apache, mysql and wordpress.
