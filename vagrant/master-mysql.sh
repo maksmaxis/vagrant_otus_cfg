@@ -33,12 +33,8 @@ touch /home/vagrant/repo/debug_backup.log
 mkdir /home/vagrant/repo/mysqldump/
 cd /home/vagrant/repo/; chmod +x mysql_backup_script.sh
 
-#  добавить крон
-cat > /etc/crontab <<EOF
-# MySQL backup script
-
-*/10 0-23 * * * /home/vagrant/repo/mysql_backup_script.sh >> /home/vagrant/repo/debug_backup.log 2>&1
-EOF
+# добавить задачу в крон
+echo -e '*/10 0-23 * * * /home/vagrant/repo/mysql_backup_script.sh >> /home/vagrant/repo/debug_backup.log 2>&1' | crontab -
 
 # Перезагрузка mysql
 systemctl restart mysqld
