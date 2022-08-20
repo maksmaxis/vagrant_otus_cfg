@@ -37,7 +37,7 @@ systemctl start mysqld
 # Ставим в автозагрузку
 systemctl enable mysqld
 
-sed -i '6ibind-address           = 0.0.0.0\nserver-id              = 2\nbinlog_do_db                = master-bin' /etc/my.cnf
+sed -i '6ibind-address           = 0.0.0.0\nserver-id              = 2\nbinlog_do_db                = mysql-bin' /etc/my.cnf
 
 #echo "
 #[client]
