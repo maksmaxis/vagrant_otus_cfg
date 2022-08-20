@@ -7,9 +7,9 @@ user='-uroot'
 
 MYSQL='mysql --skip-column-names'
 
-for db in `$MYSQL -e "SHOW DATABASES LIKE '%\_mysql'"`;
+for db in `$MYSQL -e "SHOW DATABASES LIKE '%\mysql'"`;
 	do
-for tbl in $($MYSQL $user --password $db -e "SHOW TABLES LIKE '%_tbl'");
+for tbl in $($MYSQL $user --password $db -e "SHOW TABLES LIKE '%_grants'");
 	do
 	/usr/bin/mysqldump $user --password --master-data=2 $db  $tbl | gzip -1 > /home/vagrant/repo/mysqldump/dump_$(date +%F_%T_%N).gz
 done    
